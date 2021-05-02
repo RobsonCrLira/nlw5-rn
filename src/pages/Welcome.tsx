@@ -1,8 +1,16 @@
 import React from 'react';
-import { SafeAreaView, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
-
+import {
+    SafeAreaView,
+    Text,
+    Image,
+    TouchableOpacity,
+    StyleSheet,
+    Dimensions
+} from 'react-native';
+import { Feather } from '@expo/vector-icons'
 import wateringImg from '../assets/watering.png';
 import colors from '../styles/colors';
+import fonts from '../styles/fonts';
 
 export function Welcome() {
     return (
@@ -13,7 +21,11 @@ export function Welcome() {
                 de forma fácil
             </Text>
 
-            <Image source={wateringImg} style={style.image} />
+            <Image
+                source={wateringImg}
+                style={style.image}
+                resizeMode="contain"
+            />
 
             <Text style={style.subtitle}>
                 Não esqueça mais de regar suas plantas.
@@ -21,9 +33,10 @@ export function Welcome() {
             </Text>
 
             <TouchableOpacity style={style.button} activeOpacity={0.7}>
-                <Text style={style.buttonText}>
-                    >
-                </Text>
+                <Feather
+                    name='chevron-right'
+                    style={style.buttonIcon}
+                />
             </TouchableOpacity>
 
         </SafeAreaView>
@@ -34,20 +47,26 @@ const style = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'space-between'
+        justifyContent: 'space-around'
     },
     title: {
-        fontSize: 32,
+        fontSize: 28,
         fontWeight: 'bold',
         textAlign: 'center',
         color: colors.heading,
-        marginTop: 38
+        marginTop: 38,
+        fontFamily: fonts.heading,
+        lineHeight: 34
     },
     subtitle: {
         textAlign: 'center',
         fontSize: 18,
         paddingHorizontal: 20,
-        color: colors.heading
+        color: colors.heading,
+        fontFamily: fonts.text
+    },
+    image: {
+        height: Dimensions.get('window').width * 0.7
     },
     button: {
         backgroundColor: colors.green,
@@ -58,12 +77,12 @@ const style = StyleSheet.create({
         height: 56,
         width: 56
     },
-    image: {
-        width: 292,
-        height: 284
-    },
     buttonText: {
         color: colors.white,
         fontSize: 24
+    },
+    buttonIcon: {
+        fontSize: 26,
+        color: colors.white
     }
 });
